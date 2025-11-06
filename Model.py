@@ -6,11 +6,33 @@ from DataParsing import get_data
 
 data = get_data()
 
-features = ["brent_eur", "brent_eur_lag1", "brent_eur_lag2", "weeks_since_start", "season_sin", "season_cos"]
-X = data[features]
-y = data["e95_price"]
+# --- Shifting target one week forward ---
+data["target_e95_next"] = data["e95_price"].shift(-1)
+# data["target_diesel_next"] = data["diesel_price"].shift(-1)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+# --- Only past information ---
+features = [
+    "brent_eur_lag1",
+    "brent_eur_lag2",
+    "weeks_since_start",
+    "season_sin",
+    "season_cos"
+]
+
+"""
+features = ["brent_eur", "brent_eur_lag1", "brent_eur_lag2", "weeks_since_start", "season_sin", "season_cos"]
+"""
+
+data = data.dropna(subset=features + ["target_e95_next"]).reset_index(drop=True)
+
+# Split features and targets
+X = data[features]
+y_e95 = data["target_e95_next"]
+# y_diesel = data["target_diesel_next"]
+
+# y = data["e95_price"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y_e95, test_size=0.2, shuffle=False)
 
 model = LinearRegression()
 model.fit(X_train, y_train)
@@ -31,7 +53,7 @@ print(f"{features[1]} coefficient:", model.coef_[1])
 print(f"{features[2]} coefficient:", model.coef_[2])
 print(f"{features[3]} coefficient:", model.coef_[3])
 print(f"{features[4]} coefficient:", model.coef_[4])
-print(f"{features[5]} coefficient:", model.coef_[5])
+# print(f"{features[5]} coefficient:", model.coef_[5])
 print("coefficients:", model.coef_)
 
 y_pred = model.predict(X_test)
