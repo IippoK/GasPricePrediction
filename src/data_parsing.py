@@ -5,9 +5,9 @@ import numpy as np
 def get_data():
 
     # Load the .csv-files
-    brent = pd.read_csv("brent_oil_data.csv")
-    usd = pd.read_csv("usd_eur_weekly.csv")
-    fuel = pd.read_csv("gas_prices_weekly.csv")
+    brent = pd.read_csv("../data/brent_oil_data.csv")
+    usd = pd.read_csv("../data/usd_eur_weekly.csv")
+    fuel = pd.read_csv("../data/gas_prices_weekly.csv")
 
     # Consistent date format
     for df in [brent, usd, fuel]:
@@ -48,9 +48,10 @@ def flag_events():
     end = pd.Timestamp("2022-12-05")
     data["russia_ukraine_2022"] = ((data["date"] >= start) & (data["date"] <= end)).astype(int)
 
-    
-
     return data
 
     # print(merged.info())
     # print(merged.head())
+
+
+print(get_data())
