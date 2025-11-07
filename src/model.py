@@ -2,6 +2,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import Ridge
 from DataParsing import get_data
 
 data = get_data()
@@ -34,9 +36,27 @@ y_e95 = data["target_e95_next"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y_e95, test_size=0.2, shuffle=False)
 
-model = LinearRegression()
-model.fit(X_train, y_train)
+poly = PolynomialFeatures(degree=2, include_bias=False)
+X_train_poly = poly.fit_transform(X_train)
+X_test_poly = poly.transform(X_test)
 
+# Ridge Regression model training with regularization strength alpha
+model = Ridge(alpha=100)
+model.fit(X_train_poly, y_train)
+
+"""
+model = LinearRegression()
+model.fit(X_train_poly, y_train)
+# model.fit(X_train, y_train)
+"""
+
+y_pred = model.predict(X_test_poly)
+
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+
+"""
 # --- Random Forest Regressor ---
 rf = RandomForestRegressor(
     n_estimators=200,
@@ -63,3 +83,9 @@ print("R2:", r2_score(y_test, y_pred))
 print("\nRandom Forest results:")
 print(f"MAE: {rf_mae:.3f}")
 print(f"R2: {rf_r2:.3f}")
+"""
+
+print("MAE:", mae)
+print("R2:", r2)
+
+print(poly.get_feature_names_out(X_train.columns))

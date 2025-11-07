@@ -40,5 +40,17 @@ def get_data():
 
     return merged
 
+
+def flag_events():
+
+    data = get_data()
+    start = pd.Timestamp("2022-02-21")
+    end = pd.Timestamp("2022-12-05")
+    data["russia_ukraine_2022"] = ((data["date"] >= start) & (data["date"] <= end)).astype(int)
+
+    
+
+    return data
+
     # print(merged.info())
     # print(merged.head())
