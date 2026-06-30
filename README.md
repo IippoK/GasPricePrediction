@@ -1,2 +1,25 @@
-# GasPricePrediction
-ML model for E95 and diesel pump price prediction
+# Gas Price Prediction
+
+A machine learning model that predicts Finnish E95 pump prices one week ahead
+using Brent crude oil prices, USD/EUR exchange rates, and historical fuel prices.
+
+## Approach
+- Data collected via a custom web scraper (weekly Finnish E95 prices, Brent crude, USD/EUR rate)
+- Features include lag variables, rate-of-change, and cyclical seasonal encoding (sin/cos)
+- Ridge regression on polynomial features to prevent overfitting
+- Chronological train/test split to respect time series structure
+
+## Results
+| | MAE | R² |
+|---|---|---|
+| Ridge model | 0.043 €/liter | 0.881 |
+| Naïve baseline | 0.038 €/liter | 0.900 |
+
+The naïve baseline (last week's price = next week's price) outperforms the model,
+reflecting the high autocorrelation of fuel prices.
+
+## Built with
+Python, scikit-learn, pandas, numpy
+
+## Data sources
+Collected weekly via custom scraper: Finnish E95 pump prices, Brent crude oil, USD/EUR rate
