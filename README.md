@@ -23,8 +23,8 @@ reflecting the high autocorrelation of fuel prices.
 Python, scikit-learn, pandas, numpy
 
 ## Data sources
-Collected weekly via custom scraper: Finnish E95 pump prices
-Downloaded manually: Brent crude oil, USD/EUR rate
+- Collected weekly via custom scraper: Finnish E95 pump prices
+- Downloaded manually: Brent crude oil, USD/EUR rate
 
 ## Anomaly Detection
 Implemented rolling z-score analysis to automatically flag 
