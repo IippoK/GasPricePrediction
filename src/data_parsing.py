@@ -49,9 +49,3 @@ def flag_events():
     data["russia_ukraine_2022"] = ((data["date"] >= start) & (data["date"] <= end)).astype(int)
 
     return data
-
-    # print(merged.info())
-    # print(merged.head())
-
-
-print(get_data())
