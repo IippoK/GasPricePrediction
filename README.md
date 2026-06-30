@@ -23,3 +23,10 @@ Python, scikit-learn, pandas, numpy
 
 ## Data sources
 Collected weekly via custom scraper: Finnish E95 pump prices, Brent crude oil, USD/EUR rate
+
+## Anomaly Detection
+Implemented rolling z-score analysis to automatically flag 
+statistically significant price surges and crashes. 
+Identified 7 distinct market events (2005–2024), including 
+the 2008 financial crisis, COVID-19 demand collapse, 
+and the 2022 energy crisis following Russia's invasion of Ukraine.
