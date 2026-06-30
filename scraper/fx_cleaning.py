@@ -6,15 +6,14 @@ df_fx = pd.read_csv("usd_eur_rates.csv")
 df_fx = df_fx.rename(columns={"DATE": "date"})
 
 # Parse 'date' column to datetime
-df_fx["DATE"] = pd.to_datetime(df_fx["DATE"])
+df_fx["date"] = pd.to_datetime(df_fx["date"])
 
 # Normalize to start of the week (Monday)
-df_fx["DATE"] = df_fx["DATE"].dt.to_period("W").apply(lambda r: r.start_time)
+df_fx["date"] = df_fx["date"].dt.to_period("W").apply(lambda r: r.start_time)
 
 # Rename for clarity
 df_fx = df_fx.rename(columns={"US dollar/Euro (EXR.D.USD.EUR.SP00.A) - Modified value (Weekly)": "usd_per_eur"})
 
-df_fx = df_fx.rename(columns={"US dollar/Euro (EXR.D.USD.EUR.SP00.A) - Modified value (Weekly)": "usd_per_eur"})
 # Drop duplicates just in case
 df_fx = df_fx.drop_duplicates(subset="date")
 
