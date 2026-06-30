@@ -5,7 +5,7 @@ using Brent crude oil prices, USD/EUR exchange rates, and historical fuel prices
 
 ## Approach
 - E95 price data for Finland collected via a custom web scraper
-- Brent crude rice data and USD/EUR rates downloaded manually and cleaned with a script
+- Brent crude price data and USD/EUR rates downloaded manually and cleaned with a script
 - Features include lag variables, rate-of-change, and cyclical seasonal encoding (sin/cos)
 - Ridge regression on polynomial features to prevent overfitting
 - Chronological train/test split to respect time series structure
