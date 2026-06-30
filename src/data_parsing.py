@@ -14,7 +14,7 @@ def get_data():
         df["date"] = pd.to_datetime(df["date"])
 
     # Drop unnecessary columns
-    usd = usd[["date", "rate"]]
+    usd = usd[["date", "usd_per_eur"]]
 
     # Merge
     merged = brent.merge(usd, on="date").merge(fuel, on="date")
