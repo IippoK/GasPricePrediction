@@ -4,7 +4,8 @@ A machine learning model that predicts Finnish E95 pump prices one week ahead
 using Brent crude oil prices, USD/EUR exchange rates, and historical fuel prices.
 
 ## Approach
-- Data collected via a custom web scraper (weekly Finnish E95 prices, Brent crude, USD/EUR rate)
+- E95 price data for Finland collected via a custom web scraper
+- Brent crude rice data and USD/EUR rates downloaded manually and cleaned with a script
 - Features include lag variables, rate-of-change, and cyclical seasonal encoding (sin/cos)
 - Ridge regression on polynomial features to prevent overfitting
 - Chronological train/test split to respect time series structure
