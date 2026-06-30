@@ -30,3 +30,9 @@ statistically significant price surges and crashes.
 Identified 7 distinct market events (2005–2024), including 
 the 2008 financial crisis, COVID-19 demand collapse, 
 and the 2022 energy crisis following Russia's invasion of Ukraine.
+
+## Future work
+Weekly-resolution data limits forecast granularity. 
+Daily pump-price data could enable a consumer-facing 
+price prediction tool, pending further model validation 
+against the naïve baseline.
